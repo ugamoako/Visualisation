@@ -1,8 +1,57 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  overflow: auto;
 }
-
+li a {color: black;}
 a {
-  color: #00B7FF;
+  color: black;;
 }
+.container{
+  position: relative;
+  display: block;
+  margin: 0 auto;
+}
+#chart{
+margin: 0 auto;
+padding: 0;
+float: none;
+text-align: center;
+height: 500px;
+width: 500px;
+position: relative;
+}
+.tooltip {
+  background: #eee;
+  box-shadow: 0 0 5px #999999;
+  color: #333;
+  display: none;
+  font-size: 12px;
+  left: 130px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 95px;
+  width: 80px;
+  z-index: 10;
+}
+.legend {
+   font-size: 12px;
+  }
+rect {
+  stroke-width: 2;
+      }
+.node circle {
+	  fill: #fff;
+	  stroke: steelblue;
+	  stroke-width: 3px;
+	}
+
+	.node text { font: 12px sans-serif; }
+
+	.link {
+	  fill: none;
+	  stroke: #ccc;
+	  stroke-width: 2px;
+	}
+	
