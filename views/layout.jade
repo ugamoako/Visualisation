@@ -13,7 +13,7 @@ html
     script(src='/javascripts/script.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
   body
-    nav.navbar.navbar-inverse
+    nav.navbar.navbar-inverse.navbar-fixed-top
       .container-fluid
         <!-- Brand and toggle get grouped for better mobile display -->
         .navbar-header
@@ -23,35 +23,47 @@ html
             span.icon-bar
             span.icon-bar
          
-          a.navbar-brand(href="#") Brand
+          a.navbar-brand(href="#") Pythia
         .collapse.navbar-collapse#myNavbar
           ul.nav.navbar-nav
             li.active
               a(href="#" style="background-color:#1f77b4") Home
+            li.dropdown
+              a.dropdown-toggle(data-toggle="dropdown" href="#") Key
+                span.caret
+              ul.dropdown-menu
+                li
+                  a(href="#" style="background-color:#aec7e8") jan
+                li
+                  a(href="#" style="background-color:#ff7f0e") Feb 
+                li
+                  a(href="#" style="background-color:#ffbb78") Mar
+                li
+                  a(href="#" style="background-color:#2ca02c") Apr
+                li
+                  a(href="#" style="background-color:#98df8a") May
+                li
+                  a(href="#" style="background-color:#d62728") Jun
+                li
+                  a(href="#" style="background-color:#ff9896") Jul
+                li
+                  a(href="#" style="background-color:#9467bd") Aug 
+                li
+                  a(href="#" style="background-color:#c5b0d5") Sep
+                li
+                  a(href="#" style="background-color:#8c564b") Oct
+                li
+                  a(href="#" style="background-color:#c49c94") Nov 
+                li
+                  a(href="#" style="background-color:#e377c2") Dec
+        
+            //li
+              a(href="#") Key
             li
-              a(href="#" style="background-color:#aec7e8") Jan
+              a(href="#") Summary 
             li
-              a(href="#" style="background-color:#ff7f0e") Feb 
-            li
-              a(href="#" style="background-color:#ffbb78") Mar
-            li
-              a(href="#" style="background-color:#2ca02c") Apr
-            li
-              a(href="#" style="background-color:#98df8a") May
-            li
-              a(href="#" style="background-color:#d62728") Jun
-            li
-              a(href="#" style="background-color:#ff9896") Jul
-            li
-              a(href="#" style="background-color:#9467bd") Aug 
-            li
-              a(href="#" style="background-color:#c5b0d5") Sep
-            li
-              a(href="#" style="background-color:#8c564b") Oct
-            li
-              a(href="#" style="background-color:#c49c94") Nov 
-            li
-              a(href="#" style="background-color:#e377c2") Dec
+              a(href="#") Report
+            
           ul.nav.navbar-nav.navbar-right
             li
               a(href="#")

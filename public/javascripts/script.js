@@ -4,11 +4,13 @@ $(document).ready(function(){
     mygrah(mydatavar);
 $('.a').on('click',function(){
     mydatavar = '/Dataset/my'+this.text+'.csv';
+    d3.selectAll('svg').remove(); 
     mygrah(mydatavar);
 });
 }) 
-function mygrah(param){ 
-    var width = 1200,
+function mygrah(param){
+    
+    var width = 1500,
     height = 1000,
     padding = 1.5, // separation between same-color nodes
     clusterPadding = 6, // separation between different-color nodes
@@ -44,7 +46,7 @@ function mygrah(param){
 
         //this will make the grapg from nodes
         function makeGraph(nodes) {
-             d3.selectAll("svg > *").remove();            
+             //d3.selectAll("svg > *").remove();            
             var force = d3.layout.force()
                 .nodes(nodes)
                 .size([width, height])
