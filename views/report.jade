@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    .container
+        .col-lg-12
+        h1 Report on Pythia Data Visualization
+        .col-lg-12
+        h2 Introduction:
+        p We gathered data from an interactive installation called Pythia through google speech api. The Pythia system represent the ancient priestess who was said to channel prophesies from Apollo to its attendants and also pronounce judgement.
+        p The task at hand is to visualize the text data for easy analysis and interpretation of the data. The goal is to find out the most common phrases used by attendees to the oracle. 
+        h3 Technologies:
+        ul
+            li Nodejs
+            li Express framework
+            li Anaconda Notebook
+            li D3 js
+        h3 Dataset Description:
+        p The dataset was a csv file with 7 columns (Number of Records (bin); Number of Records; Client; Id; Lang; Text; Time) and 161533 rows.  Our target aim allows us to select only the “text” and “Time” fields from the dataset. Jupyter Notebook was used in conjunction with pandas’ library in python to remove invalid fields and erroneous records from the dataset.  After the cleaning of the data, the data was group according to month thus: from January to December and an additional field was created called “count” to take into accounts how each phrase appears in the dataset per month. The year and days parts of the date was striped since we are only interested in grouping the data according to months and also the all fall under one year (2015).
+    
+        p The chart above illustrates the various distributions for the data according to months.
+        h3 Data Visualization:
+        p D3 js java script library was used to display the data on our website. Since the dataset is so hug, a sample of about 730 records is loaded at a time which amount to 1% of the total dataset. Pagination is provided on the website to see the rest of the data also loading 1% at a time.
+        p Svg circles are drawn and the radius of the circle is the size the number of count on that phrase. This implies that, larger circles indicate larger counts and vice versa labeled with the phrase text.
+        p Since the dataset is clustered according to months, colors are assigned to each circle indication the month which it belongs. Circles on the page can be pulled or pushed to properly view it’s properties and tooltips will display further information about the actual number of counts and other metadata of the circle in question.
+
+        h3 The Website:
+        p The website is just a simple site with navigation bar which has the key to the graph, summarized analysis of the data and a brief report on the project. D3.js library version 3 was used to create the visualization chart on the website and it runs on node js server.
+
+    
+

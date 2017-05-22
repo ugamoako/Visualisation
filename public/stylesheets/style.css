@@ -55,4 +55,26 @@ rect {
 	  stroke: #ccc;
 	  stroke-width: 2px;
 	}
-	
+  #filter{
+    padding: 0 0 0 5px;
+    margin: 10px 0 0 0;
+    height: 30px;
+    width: 200px;
+  }
+#filtersubmit {
+  position: relative;
+  z-index: 1;
+  left: -25px;
+  top: 1px;
+  color: #7B7B7B;
+  cursor: pointer;
+  width: 0;
+}
+.filter{
+  padding: 10px 0 0 0;
+  font-size: 16px;
+}
+p{
+  text-align: justify;
+  font-size: 14px;
+}

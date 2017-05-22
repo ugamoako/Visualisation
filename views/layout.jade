@@ -5,12 +5,16 @@ html
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-datetimepicker.min.css')
     
     script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
     //script(src='/javascripts/data.js')
     //script(src='/javascripts/datatwo.js')
     script(src='/javascripts/script.js')
+    script(src='/javascripts/moment-with-locales.js')
+    script(src='/javascripts/bootstrap-datetimepicker.min.js')
+    script(src='/javascripts/pythonconn.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
   body
     nav.navbar.navbar-inverse.navbar-fixed-top
@@ -27,78 +31,57 @@ html
         .collapse.navbar-collapse#myNavbar
           ul.nav.navbar-nav
             li.active
-              a(href="#" style="background-color:#1f77b4") Home
+              a(href="/" style="background-color:#1f77b4") Home
             li.dropdown
-              a.dropdown-toggle(data-toggle="dropdown" href="#") Key
+              a.dropdown-toggle(data-toggle="dropdown" href="#") Filter
                 span.caret
               ul.dropdown-menu
                 li
-                  a(href="#" style="background-color:#aec7e8") jan
-                li
-                  a(href="#" style="background-color:#ff7f0e") Feb 
-                li
-                  a(href="#" style="background-color:#ffbb78") Mar
-                li
-                  a(href="#" style="background-color:#2ca02c") Apr
-                li
-                  a(href="#" style="background-color:#98df8a") May
-                li
-                  a(href="#" style="background-color:#d62728") Jun
-                li
-                  a(href="#" style="background-color:#ff9896") Jul
-                li
-                  a(href="#" style="background-color:#9467bd") Aug 
-                li
-                  a(href="#" style="background-color:#c5b0d5") Sep
-                li
-                  a(href="#" style="background-color:#8c564b") Oct
-                li
-                  a(href="#" style="background-color:#c49c94") Nov 
-                li
-                  a(href="#" style="background-color:#e377c2") Dec
-        
-            //li
-              a(href="#") Key
+                  
+                  a(href="#") Sort 
+            
             li
               a(href="#") Summary 
             li
-              a(href="#") Report
-            
+              a(href="/report") Report
+          
           ul.nav.navbar-nav.navbar-right
+            li
+              input#filter(type="text" placeholder="Search")
+              i#filtersubmit.fa.fa-search
             li
               a(href="#")
                 span.glyphicon.glyphicon-user Sign Up
             li
               a(href="#")
                 span.glyphicon.glyphicon-log-in Login
-      
-    nav(aria-label="Page navigation")
-      ul.pagination
-        li
-          a(href="#" aria-label="Previous")
-            span(aria-hidden="true") &laquo;
-        li
-          a.a(href="#") 1
-        li
-          a.a(href="#") 2
-        li
-          a.a(href="#") 3
-        li
-          a.a(href="#") 4
-        li
-          a.a(href="#") 5
-         li
-          a.a(href="#") 6
-        li
-          a.a(href="#") 7
-        li
-          a.a(href="#") 8
-        li
-          a.a(href="#") 9
-        li
-          a.a(href="#") 10
-        li
-          a(href="#" aria-label="Next")
-            span(aria-hidden="true") &raquo;
-    h1= 'Pyfia Oracle Data Visualization'
+    .container(style="padding:10px 0 0 0")
+      .col-lg-1.col-md-1.col-sm-1
+        .filter Filter
+      .col-lg-3.col-md-3.col-sm-4  
+        .form-group
+          .input-group.date#datetimepicker1
+            input.form-control(type='text')
+            span.input-group-addon
+              span.glyphicon.glyphicon-calendar
+      .col-lg-3.col-md-3.col-sm-4  
+        .form-group
+          .input-group.date#datetimepicker2
+            input.form-control(type='text')
+            span.input-group-addon
+              span.glyphicon.glyphicon-calendar
+      .col-lg-3.col-md-3.col-sm-4 
+        .form-group
+          .input-group
+            input#submittext.form-control(type='text' placeholder='Enter a Phrase')
+            span.input-group-addon
+              span#submitfilt.glyphicon.glyphicon-search
+      .col-lg-2.col-md-2.col-sm-4
+      .form-group
+        .input-group
+          select.form-control(style='width:100px')
+            option(value="1") top
+            option(value="2") more than
+            option(value='3') less than
+          input#submittextt.form-control(type='number' placeholder='20' style='width:60px')            
     block content

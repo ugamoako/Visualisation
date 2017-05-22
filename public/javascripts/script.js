@@ -1,6 +1,26 @@
 
-var mydatavar = "/Dataset/my6.csv";
+var mydatavar = "/Dataset/nnn.csv";
 $(document).ready(function(){
+    $('#filtersubmit').click(function() {
+        alert('Searching for ' + $('#filter').val());
+    });
+    $('#submitfilt').click(function(){
+        alert('searching.....');
+    })
+        $(function () {
+             $('#datetimepicker1').datetimepicker();
+             //$('#datetimepicker1').data("DateTimePicker").maxDate(2015-01-01);
+             $('#datetimepicker2').datetimepicker({
+                 useCurrent: false, //Important! See issue #1075
+              });
+             $("#datetimepicker1").on("dp.change", function (e) {
+             $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepicker2").on("dp.change", function (e) {
+                 $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+    
     mygrah(mydatavar);
 $('.a').on('click',function(){
     mydatavar = '/Dataset/my'+this.text+'.csv';
@@ -10,7 +30,7 @@ $('.a').on('click',function(){
 }) 
 function mygrah(param){
     
-    var width = 1500,
+    var width = 1200,
     height = 1000,
     padding = 1.5, // separation between same-color nodes
     clusterPadding = 6, // separation between different-color nodes
@@ -54,7 +74,7 @@ function mygrah(param){
                 .charge(0)
                 .on("tick", tick)
                 .start();
-            var svg = d3.select("body").append("svg")
+            var svg = d3.select(".body").append("svg")
                 .attr("width", width)
                 .attr("height", height);
             var node = svg.selectAll("circle")
