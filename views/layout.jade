@@ -41,7 +41,7 @@ html
                   a(href="#") Sort 
             
             li
-              a(href="#") Summary 
+              a(href="/summary") Table 
             li
               a(href="/report") Report
           
@@ -79,9 +79,14 @@ html
       .col-lg-2.col-md-2.col-sm-4
       .form-group
         .input-group
-          select.form-control(style='width:100px')
-            option(value="1") top
-            option(value="2") more than
-            option(value='3') less than
-          input#submittextt.form-control(type='number' placeholder='20' style='width:60px')            
+          select#selectcat.form-control(style='width:70px; padding:6px')
+            option(value="1") At most
+            option(value="2") At least
+            option(value='3') top
+            option(value='4') equal
+            //option(value='5') between
+          input#fiterByNumber.form-control(type='number' value='20' style='width:60px; padding:6px')
+          //input#fiterByNumber2.form-control(type='number' value='20' style='width:60px; padding:6px;')
+          //span.input-group-addon
+            span#submitfil.glyphicon.glyphicon-search            
     block content

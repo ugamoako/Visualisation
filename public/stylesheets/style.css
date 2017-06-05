@@ -78,3 +78,6 @@ p{
   text-align: justify;
   font-size: 14px;
 }
+.input-group-addon{
+  width:0;
+}

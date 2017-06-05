@@ -1,0 +1,70 @@
+extends layout
+
+block content
+    <div id="filteredList"></div>
+    script(type="text/javascript").
+        $(document).ready(function(){
+            var tabulate = function (data,columns) {
+                var table = d3.select('body').append('table')
+                    var thead = table.append('thead')
+                    var tbody = table.append('tbody')
+
+                    thead.append('tr')
+                    .selectAll('th')
+                        .data(columns)
+                        .enter()
+                    .append('th')
+                        .text(function (d) { return d })
+
+                    var rows = tbody.selectAll('tr')
+                        .data(data)
+                        .enter()
+                    .append('tr')
+
+                    var cells = rows.selectAll('td')
+                        .data(function(row) {
+                            return columns.map(function (column) {
+                                return { column: column, value: row[column] }
+                        })
+                    })
+                    .enter()
+                    .append('td')
+                    .text(function (d) { return d.value })
+
+                return table;
+                }
+
+                d3.csv('/Dataset/withIndex.csv',function (data) {
+                    var columns = ['Id','name','Counter']
+                tabulate(data,columns)
+                    d3.select('#filter').on('keyup', onFilter);
+                    d3.select('#submittext').on('keyup', onFilter); 
+                function onFilter(){
+
+                var filterText = d3.select('#submittext').property('value');
+                
+                filteredData = data;
+                console.log(data);
+                if (filterText !== ""){
+                    var filteredData = data.filter(function(d){
+                    return (d.label.indexOf(filterText) === 0);
+                    });
+                    //var columns = ['label']
+                    //alert(filterText);
+                    
+                }
+               d3.select('#filteredList').html(
+                filteredData.map(function(d){
+                    return d.label;
+                    }).join("<br/>")
+                    );
+                }
+                });
+                 //onFilter();
+                
+            
+                
+            
+        });
+            
+    
