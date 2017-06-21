@@ -1,18 +1,10 @@
 extends layout
 
 block content
-
-  //p Welcome to #{title}
-  //p it was not easy to set this up 
-    .container    
-    #chart
-
-  .body
    h1 Pyfia Oracle Data Visualization
    p.
     Pythia is an interactive sonic sculpture, analyzing the audience’s speech and interpreting it into 
     absurd or perhaps prophetic messages, the so-called divine glitch. <a href='http://www.sonicartist.me/wp/pythia/'> Read more...</a>
-
    P.
     The Visualization below represent the data collected in an eleven month period in the year 2015.
     this Visualization is interactive and the user can select in between time periods to analyse the 
@@ -20,3 +12,17 @@ block content
     via the search boxes to visualise its existence or frequency in the oracle. Detailed report on the
     analysis of the data can be found in the report tab located in the navigation bar or click <a href='/report.jade'> here</a>
 
+   ul.nav.nav-pills.nav-justified
+    li.active
+      a(a data-toggle="pill" href="#home") Month
+    li
+      a(a data-toggle="pill" href="#hierarchy") hierarchy
+    li
+      a(a data-toggle="pill" href="#size") frequency
+   .tab-content
+    #home.tab-pane.fade.in.active
+      .body
+    #hierarchy.tab-pane.fade
+      h3 hierarchy
+    #size.tab-pane.fade
+      h3 Size

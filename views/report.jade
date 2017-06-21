@@ -5,6 +5,11 @@ block content
         .col-lg-12
         h1 Report on Pythia Data Visualization
         .col-lg-12
+        h2 Quick Overview
+        p It is an interactive software that analyze audio voice speech into a prophetic message. This was designed to mimic the the ancient Greece Goddess of Apollo.
+        p According to the Applications website: 
+        p “Pythia is an interactive sonic sculpture, analyzing the audience’s speech and interpreting it into absurd or perhaps prophetic messages, the so-called divine glitch.” 
+
         h2 Introduction:
         p We gathered data from an interactive installation called Pythia through google speech api. The Pythia system represent the ancient priestess who was said to channel prophesies from Apollo to its attendants and also pronounce judgement.
         p The task at hand is to visualize the text data for easy analysis and interpretation of the data. The goal is to find out the most common phrases used by attendees to the oracle. 
@@ -14,17 +19,116 @@ block content
             li Express framework
             li Anaconda Notebook
             li D3 js
+            li javascript
+            li HTML
         h3 Dataset Description:
-        p The dataset was a csv file with 7 columns (Number of Records (bin); Number of Records; Client; Id; Lang; Text; Time) and 161533 rows.  Our target aim allows us to select only the “text” and “Time” fields from the dataset. Jupyter Notebook was used in conjunction with pandas’ library in python to remove invalid fields and erroneous records from the dataset.  After the cleaning of the data, the data was group according to month thus: from January to December and an additional field was created called “count” to take into accounts how each phrase appears in the dataset per month. The year and days parts of the date was striped since we are only interested in grouping the data according to months and also the all fall under one year (2015).
-    
-        p The chart above illustrates the various distributions for the data according to months.
+        p The dataset was a csv file with 7 columns (Number of Records (bin); Number of Records; Client; Id; Lang; Text; Time) and 161533 rows.  Our target aim allows us to select only the “text” and “Time” fields from the dataset. 
+        p Jupyter Notebook was used in conjunction with pandas’ library in python to remove invalid fields and erroneous records from the dataset.  After the cleaning of the data, the data was group according to month thus: from January to December and an additional field was created called “count” to take into accounts how each phrase appears in the dataset per month. 
+        p The year and days parts of the date was striped since we are only interested in grouping the data according to phrase count and months and also the all fall under one year (2015).
+
+        //p The dataset was a csv file with 7 columns (Number of Records (bin); Number of Records; Client; Id; Lang; Text; Time) and 161533 rows.  Our target aim allows us to select only the “text” and “Time” fields from the dataset. Jupyter Notebook was used in conjunction with pandas’ library in python to remove invalid fields and erroneous records from the dataset.  After the cleaning of the data, the data was group according to month thus: from January to December and an additional field was created called “count” to take into accounts how each phrase appears in the dataset per month. The year and days parts of the date was striped since we are only interested in grouping the data according to months and also the all fall under one year (2015).
+        
+        //p The chart above illustrates the various distributions for the data according to months.
         h3 Data Visualization:
-        p D3 js java script library was used to display the data on our website. Since the dataset is so hug, a sample of about 730 records is loaded at a time which amount to 1% of the total dataset. Pagination is provided on the website to see the rest of the data also loading 1% at a time.
+        #chart
+        p D3.js Library was the chosen data visualization tool for our project.
+        p All the data was displayed at once with the maximum count of 20 appearances.
+        p The data was clustered according to months to add more understanding and beauty to the data.
         p Svg circles are drawn and the radius of the circle is the size the number of count on that phrase. This implies that, larger circles indicate larger counts and vice versa labeled with the phrase text.
-        p Since the dataset is clustered according to months, colors are assigned to each circle indication the month which it belongs. Circles on the page can be pulled or pushed to properly view it’s properties and tooltips will display further information about the actual number of counts and other metadata of the circle in question.
+        p Our data was widely varied, so to have a better look we normalized it by applying logarithm fucntion to the count column.
+        #chart2
+        //p D3 js java script library was used to display the data on our website. Since the dataset is so hug, a sample of about 730 records is loaded at a time which amount to 1% of the total dataset. Pagination is provided on the website to see the rest of the data also loading 1% at a time.
+        //p Svg circles are drawn and the radius of the circle is the size the number of count on that phrase. This implies that, larger circles indicate larger counts and vice versa labeled with the phrase text.
+        //p Since the dataset is clustered according to months, colors are assigned to each circle indication the month which it belongs. Circles on the page can be pulled or pushed to properly view it’s properties and tooltips will display further information about the actual number of counts and other metadata of the circle in question.
 
         h3 The Website:
         p The website is just a simple site with navigation bar which has the key to the graph, summarized analysis of the data and a brief report on the project. D3.js library version 3 was used to create the visualization chart on the website and it runs on node js server.
 
-    
+    script(type="text/javascript").
+        var chart = c3.generate({
+        bindto: '#chart',
+        data: {
+            columns: [
+                ['data1', 30],
+                ['data2', 120],
+            ],
+            type : 'donut',
+            //onclick: function (d, i) { console.log("onclick", d, i); },
+            //onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+            //onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+        },
+        donut: {
+            title: "Phrase Frequency in Months"
+        }
+        });
+        setTimeout(function () {
+        chart.load({
+            columns: [
+                ["Jan", 3282],
+                ["Feb", 2689],
+                ["Mar", 10124],
+                ["Apr", 10169],
+                ["May", 8926],
+                ["Jun", 11014],
+                ["Jul", 6149],
+                ["Aug", 4450],
+                ["Oct", 52359],
+                ["Nov", 50033],
+                ["Dec", 2337]
+            ]
+        });
+        }, 1500);
+
+        setTimeout(function () {
+            chart.unload({
+                ids: 'data1'
+            });
+            chart.unload({
+                ids: 'data2'
+            });
+        }, 2500);
+
+         var chart2 = c3.generate({
+        bindto: '#chart2',
+        data: {
+            columns: [
+                ['data1', 30],
+                ['data2', 120],
+            ],
+            type : 'bar',
+            //onclick: function (d, i) { console.log("onclick", d, i); },
+            //onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+            //onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+        },
+        bar: {
+            title: "Phrase Frequency in Months"
+        }
+        });
+        setTimeout(function () {
+        chart2.load({
+            columns: [
+               ['привет', 2869],
+                    ['я', 1091],
+                    ['люблю', 615],
+                    ['как дела', 585],
+                    ['любовь', 577],
+                    ['нет', 477],
+                    ['алло', 457],
+                    ['что', 411],
+                    ['я люблю', 398],
+                    ['как', 386]
+            ]
+        });
+        }, 1500);
+
+        setTimeout(function () {
+            chart2.unload({
+                ids: 'data1'
+            });
+            chart2.unload({
+                ids: 'data2'
+            });
+        }, 2500);
+
+        
 

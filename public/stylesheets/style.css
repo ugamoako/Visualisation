@@ -8,6 +8,9 @@ li a {color: black;}
 a {
   color: black;;
 }
+li{
+  font-size: 14px;
+}
 .container{
   position: relative;
   display: block;
