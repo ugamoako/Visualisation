@@ -39,25 +39,7 @@ position: relative;
   width: 80px;
   z-index: 10;
 }
-.legend {
-   font-size: 12px;
-  }
-rect {
-  stroke-width: 2;
-      }
-.node circle {
-	  fill: #fff;
-	  stroke: steelblue;
-	  stroke-width: 3px;
-	}
 
-	.node text { font: 12px sans-serif; }
-
-	.link {
-	  fill: none;
-	  stroke: #ccc;
-	  stroke-width: 2px;
-	}
   #filter{
     padding: 0 0 0 5px;
     margin: 10px 0 0 0;

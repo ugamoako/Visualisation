@@ -6,18 +6,21 @@ html
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/c3.css')
-    link(rel='stylesheet', href='/stylesheets/bootstrap-datetimepicker.min.css')
+    //link(rel='stylesheet', href='/stylesheets/bootstrap-datetimepicker.min.css')
     
     script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
+    
     //script(src='/javascripts/data.js')
     //script(src='/javascripts/datatwo.js')
-    script(src='/javascripts/script.js')
+    
     script(src='/javascripts/c3.js')
-    script(src='/javascripts/moment-with-locales.js')
-    script(src='/javascripts/bootstrap-datetimepicker.min.js')
+    //script(src='/javascripts/moment-with-locales.js')
+    //script(src='/javascripts/bootstrap-datetimepicker.min.js')
     //script(src='/javascripts/pythonconn.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    
   body
     nav.navbar.navbar-inverse.navbar-fixed-top
       .container-fluid
@@ -58,37 +61,32 @@ html
               a(href="#")
                 span.glyphicon.glyphicon-log-in Login
     .container(style="padding:10px 0 0 0")
-      .col-lg-1.col-md-1.col-sm-1
+      //.col-lg-1.col-md-1.col-sm-1
         .filter Filter
-      .col-lg-3.col-md-3.col-sm-4  
+      //.col-lg-3.col-md-3.col-sm-4  
         .form-group
           .input-group.date#datetimepicker1
             input.form-control(type='text')
             span.input-group-addon
               span.glyphicon.glyphicon-calendar
-      .col-lg-3.col-md-3.col-sm-4  
+      //.col-lg-3.col-md-3.col-sm-4  
         .form-group
           .input-group.date#datetimepicker2
             input.form-control(type='text')
             span.input-group-addon
               span.glyphicon.glyphicon-calendar
-      .col-lg-3.col-md-3.col-sm-4 
+      
+      //.col-lg-4.col-md-4.col-sm-5
         .form-group
           .input-group
-            input#submittext.form-control(type='text' placeholder='Enter a Phrase')
+            select#selectcat.form-control(style='width:100px; padding:6px')
+              option(value="1") At most
+              option(value="2") At least
+              option(value='3') top
+              option(value='4') equal
+              //option(value='5') between
+            input#fiterByNumber.form-control(type='number' value='20' style='width:60px; padding:6px')
+            //input#fiterByNumber2.form-control(type='number' value='20' style='width:60px; padding:6px;')
             span.input-group-addon
-              span#submitfilt.glyphicon.glyphicon-search
-      .col-lg-2.col-md-2.col-sm-4
-      .form-group
-        .input-group
-          select#selectcat.form-control(style='width:70px; padding:6px')
-            option(value="1") At most
-            option(value="2") At least
-            option(value='3') top
-            option(value='4') equal
-            //option(value='5') between
-          input#fiterByNumber.form-control(type='number' value='20' style='width:60px; padding:6px')
-          //input#fiterByNumber2.form-control(type='number' value='20' style='width:60px; padding:6px;')
-          //span.input-group-addon
-            span#submitfil.glyphicon.glyphicon-search            
+              span#submitfil.glyphicon.glyphicon-search            
     block content

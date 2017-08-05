@@ -1,0 +1,23 @@
+
+link(rel='stylesheet', href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css")
+link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+link(rel='stylesheet', href='/stylesheets/bubble.css')
+.bubble
+    input.controls#search(type='text' placeholder='Enter a phrase to find...')
+    i.sub#bubble-submit.fa.fa-search
+
+    #mode-selector.controls
+      input#changemodeTop(type="radio" name="type" checked="checked" value=3)
+      label Top
+      input#changemodeMost(type="radio" name="type" value=2)
+      label At Most
+      input#changemodeLeast(type="radio" name="type" value=1)
+      label At Least
+      input#changemodeEqual(type="radio" name="type" value=4)
+      label Equal
+      input.control#fiterByNumber(type='number' value=20)
+      i.subb#submitfil.fa.fa-search
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")      
+script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.js')    
+script(src='/javascripts/script.js')

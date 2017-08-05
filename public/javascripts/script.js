@@ -1,10 +1,8 @@
-
-
-$(document).ready(function(){
-    var mydatavar = "/Dataset/withIndex.csv";
-    var num = $('#fiterByNumber').val();
-    var more = 1;
-    var term = parseInt(num, 0);
+$( document ).ready(function() {
+var mydatavar = "/Dataset/withIndex.csv";
+var num = $('#fiterByNumber').val();
+var more = 1;
+var term = parseInt(num, 0);
     //alert(term);
     $('#filtersubmit').click(function() {
             more = 6;
@@ -15,52 +13,54 @@ $(document).ready(function(){
             mygrah(mydatavar);
         //alert('Searching for ' + $('#filter').val());
     });
-    $('#submitfilt').click(function(){
+    $('#bubble-submit').click(function(){
             more = 6;
-            term = $('#submittext').val();
-            console.log('more: ', more, ' term: ', term);
+            term = $('#search').val();
+            //console.log('more: ', more, ' term: ', term);
             //mydatavar = '/Dataset/my'+this.text+'.csv';
             d3.selectAll('svg').remove(); 
             mygrah(mydatavar);
+            //searchNode()
         //alert('searching.....');
     })
-        $(function () {
-             $('#datetimepicker1').datetimepicker();
+        //$(function () {
+             //$('#datetimepicker1').datetimepicker();
              //$('#datetimepicker1').data("DateTimePicker").maxDate(2015-01-01);
-             $('#datetimepicker2').datetimepicker({
-                 useCurrent: false, //Important! See issue #1075
-              });
-             $("#datetimepicker1").on("dp.change", function (e) {
-             $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
-            });
-            $("#datetimepicker2").on("dp.change", function (e) {
-                 $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
-        });
-    });
+             //$('#datetimepicker2').datetimepicker({
+                 //useCurrent: false, //Important! See issue #1075
+              //});
+             //$("#datetimepicker1").on("dp.change", function (e) {
+             //$('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+            //});
+            //$("#datetimepicker2").on("dp.change", function (e) {
+                 //$('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+        //});
+    //});
     
         mygrah(mydatavar);
         $('#submitfil').on('click',function(){
             num = $('#fiterByNumber').val();
             term = parseInt(num, 0);
-            more = $('#selectcat').val();
+            more = $("#mode-selector input[type='radio']:checked").val()
+            
             console.log('more: ', more, ' term: ', term);
             //mydatavar = '/Dataset/my'+this.text+'.csv';
             d3.selectAll('svg').remove(); 
             mygrah(mydatavar);
         });
-        $('#fiterByNumber').on('blur',function(){          
-            num = $('#fiterByNumber').val();
-            term = parseInt(num, 0);
-            more = $('#selectcat').val();
+        //$('#fiterByNumber').on('click',function(){          
+            //num = $('#fiterByNumber').val();
+            //term = parseInt(num, 0);
+            //more = $('#selectcat').val();
             //alert('hello');             
-            console.log('more: ', more, ' term: ', term);
+            //console.log('more: ', more, ' term: ', term);
             //mydatavar = '/Dataset/my'+this.text+'.csv';
-            d3.selectAll('svg').remove(); 
-            mygrah(mydatavar);
+            //d3.selectAll('svg').remove(); 
+            //mygrah(mydatavar);
                      
            
             //alert('hello')
-        });
+        //});
 function mygrah(param){
     
     var width = 1200,
@@ -74,7 +74,7 @@ function mygrah(param){
               if(more == 1){
                 return row['Counter'] > term;
             } else if(more == 2) {
-                return row['Counter'] > term;
+                return row['Counter'] < term;
             } else if(more == 4) {
                 return row['Counter'] == term;
             } else if(more == 3) {
@@ -122,7 +122,7 @@ function mygrah(param){
                 .charge(0)
                 .on("tick", tick)
                 .start();
-            var svg = d3.select(".body").append("svg")
+            var svg = d3.select(".bubble").append("svg")
                 .attr("width", width)
                 .attr("height", height);
             var node = svg.selectAll("circle")
@@ -156,7 +156,17 @@ function mygrah(param){
                 })
 
             }
-
+            var optArray = [];
+            for (var i = 0; i < nodes.length - 1; i++) {
+        optArray.push(nodes[i].name);
+        //console.log(nodes[i].name);
+        }
+        optArray = optArray.sort();
+$(function () {
+    $("#search").autocomplete({
+        source: optArray
+    });
+});
         // Move d to be adjacent to the cluster node.
             function cluster(alpha) {
                 return function(d) {
@@ -216,4 +226,4 @@ function togglebtw() {
         x.style.display = 'none';
     }
 }
-}); 
+});

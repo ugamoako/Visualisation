@@ -1,0 +1,65 @@
+body {
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif; 
+}
+.controls {
+        margin-top: 9px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 33px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      #search {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 300px;
+      }
+
+      #search:focus {
+        border-color: #4d90fe;
+      }
+
+.sub, .subb{
+  position: relative;
+  z-index: 1;
+  top: 1px;
+  color: #7B7B7B;
+  cursor: pointer;
+  width: 0;
+}
+.sub{ left: -25px;}
+.subb{ left: -80px;}
+
+#fiterByNumber{
+   background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 25px;
+    text-overflow: ellipsis;
+    width: 85px; 
+}
+ #mode-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        margin-left: 12px;
+        padding: 5px 11px 0px 11px;
+        width: 345px;
+        height: 33px;
+        display: inline-block;
+      }
+
+      #mode-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }

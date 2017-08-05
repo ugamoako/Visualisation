@@ -14,15 +14,16 @@ block content
 
    ul.nav.nav-pills.nav-justified
     li.active
-      a(a data-toggle="pill" href="#home") Month
+      a(a data-toggle="pill" href="#home") Force-Directed Graph
     li
-      a(a data-toggle="pill" href="#hierarchy") hierarchy
+      a(a data-toggle="pill" href="#hierarchy") Bubble Chart
     li
-      a(a data-toggle="pill" href="#size") frequency
+      a(a data-toggle="pill" href="#size") Tree Chart
    .tab-content
     #home.tab-pane.fade.in.active
-      .body
+      iframe(src='/force' style="width:1200px; height:1000px; border:none; overflow:auto")
     #hierarchy.tab-pane.fade
-      h3 hierarchy
+      iframe(src='/bubble' style="width:1200px; height:1000px; border:none; overflow:auto")
     #size.tab-pane.fade
-      h3 Size
+      iframe(src='/tree' style="width:1200px; height:1000px; border:none; overflow:auto")
+        

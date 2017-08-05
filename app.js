@@ -9,7 +9,9 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var report = require('./routes/report');
 var summary = require('./routes/summary');
-
+var tree = require('./routes/tree');
+var bubble = require('./routes/bubble');
+var force = require('./routes/force');
 var app = express();
 
 // view engine setup
@@ -27,7 +29,9 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/report', report);
 app.use('/summary', summary);
-
+app.use('/tree', tree);
+app.use('/force', force);
+app.use('/bubble', bubble);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
