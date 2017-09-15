@@ -1,3 +1,10 @@
+body{
+  position: relative;
+  margin: 0;
+  top:0;
+  bottom: 0;
+}
+
 .link{
         stroke: green;
         stroke-width: 0.2px;
@@ -15,7 +22,7 @@
         -moz-box-sizing: border-box;
         height: 32px;
         outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 2px 6px rgb(255, 255, 255);
       }
 
       #search {
@@ -45,20 +52,20 @@ position: relative;
 
 path.link {
   fill: none;
-  stroke: #666;
+  stroke: #F7D706;
   stroke-width: 1.5px;
 }
 
-path.link.twofive {
-  opacity: 0.25;
+path.link.fourzero {
+  opacity: 1.0;
 }
 
-path.link.fivezero {
-  opacity: 0.50;
+path.link.sixzero {
+  opacity: 1.0;
 }
 
-path.link.sevenfive {
-  opacity: 0.75;
+path.link.eightzero {
+  opacity: 1.0;
 }
 
 path.link.onezerozero {
@@ -66,13 +73,13 @@ path.link.onezerozero {
 }
 
 circle {
-  fill: #ccc;
-  stroke: #fff;
+  fill: #EA4244;
+  /*stroke: #BB1818;*/
   stroke-width: 1px;
 }
 
 text {
-  fill: #000;
+  fill: #FFFFFF;
   font: 10px sans-serif;
   pointer-events: none;
 }

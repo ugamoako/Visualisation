@@ -1,12 +1,15 @@
-link(rel='stylesheet', href='/stylesheets/force.css')
 link(rel='stylesheet', href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css")
 link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
 //.ui-widget
     input#search
     button(type="button" onclick="searchNode()") Search
+extends layout
+
+block content
 .force
     input.controls#search(type='text' placeholder='Enter a phrase to find...')
     i#search_submit.fa.fa-search
+.body
 script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
 script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")    
 script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.js')  

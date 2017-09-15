@@ -12,15 +12,15 @@ links.forEach(function(link) {
     link.value = +link.value;
 });
 
-var width = 1200,
-    height = 1200;
+var width = $(window).width()-100,
+    height = $(window).height()-120;
 
 var force = d3.layout.force()
     .nodes(d3.values(nodes))
     .links(links)
     .size([width, height])
-    .linkDistance(10)
-    .charge(-150)
+    .linkDistance(5)
+    .charge(-500)
     .on("tick", tick)
     .start();
 
@@ -32,13 +32,13 @@ v.domain([0, d3.max(links, function(d) { return d.value; })]);
 
 // asign a type per value to encode opacity
 links.forEach(function(link) {
-	if (v(link.value) <= 25) {
-		link.type = "twofive";
-	} else if (v(link.value) <= 50 && v(link.value) > 25) {
-		link.type = "fivezero";
-	} else if (v(link.value) <= 75 && v(link.value) > 50) {
-		link.type = "sevenfive";
-	} else if (v(link.value) <= 100 && v(link.value) > 75) {
+	if (v(link.value) <= 1.0) {
+		link.type = "fourzero";
+	} else if (v(link.value) <= 5.0 && v(link.value) > 1.0) {
+		link.type = "sixzero";
+	} else if (v(link.value) <= 10.0 && v(link.value) > 5.0) {
+		link.type = "eightzero";
+	} else if (v(link.value) <= 100 && v(link.value) > 10.0) {
 		link.type = "onezerozero";
 	}
 });
@@ -55,8 +55,8 @@ svg.append("svg:defs").selectAll("marker")
     .attr("viewBox", "0 -5 10 10")
     .attr("refX", 15)
     .attr("refY", -1.5)
-    .attr("markerWidth", 6)
-    .attr("markerHeight", 6)
+    .attr("markerWidth", 4)
+    .attr("markerHeight", 4)
     .attr("orient", "auto")
   .append("svg:path")
     .attr("d", "M0,-5L10,0L0,5");
@@ -64,7 +64,7 @@ svg.append("svg:defs").selectAll("marker")
 // add the links and the arrows
 var path = svg.append("svg:g").selectAll("path")
     .data(force.links())
-  .enter().append("svg:path")
+    .enter().append("svg:path")
     .attr("class", function(d) { return "link " + d.type; })
     .attr("marker-end", "url(#end)");
 
@@ -108,32 +108,72 @@ function tick() {
 
 // action to take on mouse click
 function click() {
+    /*d3.select(this).append("text")
+        .attr("x", 12)
+        .attr("dy", ".35em")
+        .text(function(d) { return d.name; });*/
     d3.select(this).select("text").transition()
         .duration(750)
-        .attr("x", 22)
-        .style("fill", "steelblue")
-        .style("stroke", "lightsteelblue")
-        .style("stroke-width", ".5px")
-        .style("font", "20px sans-serif");
+        .attr("x", 20)
+        .style("fill", "#42f4f4")
+        /*.style("stroke", "lightsteelblue")*/
+        /*.style("stroke-width", ".5px")*/
+        .style("font", "13px sans-serif");
+    d3.select(this).select("link").transition()
+        .style("stroke", "white")
+            
     d3.select(this).select("circle").transition()
         .duration(750)
-        .attr("r", 16)
+        /*.attr("r", 16)*/
         .style("fill", "lightsteelblue");
 }
 
 // action to take on mouse double click
 function dblclick() {
+    /*node.append("text")
+    .attr("x", 12)
+    .attr("dy", ".35em")
+    .text(function(d) { return d.name; });
+    connectedNodes();*/
     d3.select(this).select("circle").transition()
         .duration(750)
         .attr("r", 6)
         .style("fill", "#ccc");
-    d3.select(this).select("text").transition()
+    /*d3.select(this).select("text").transition()
         .duration(750)
         .attr("x", 12)
         .style("stroke", "none")
         .style("fill", "black")
         .style("stroke", "none")
-        .style("font", "10px sans-serif");
+        .style("font", "10px sans-serif");*/
 }
-
+var linkedByIndex = {};
+for (i = 0; i < nodes.length; i++) {
+    linkedByIndex[i + "," + i] = 1;
+};
+node.links.forEach(function (d) {
+    linkedByIndex[d.source.index + "," + d.target.index] = 1;
+});
+function neighboring(a, b) {
+    return linkedByIndex[a.index + "," + b.index];
+}
+function connectedNodes() {
+    if (toggle == 0) {
+        //Reduce the opacity of all but the neighbouring nodes
+        d = d3.select(this).node().__data__;
+        node.style("opacity", function (o) {
+            return neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
+        });
+        link.style("opacity", function (o) {
+            return d.index==o.source.index | d.index==o.target.index ? 1 : 0.1;
+        });
+        //Reduce the op
+        toggle = 1;
+    } else {
+        //Put them back to opacity=1
+        node.style("opacity", 1);
+        link.style("opacity", 1);
+        toggle = 0;
+    }
+}
 });
