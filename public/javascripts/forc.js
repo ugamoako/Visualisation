@@ -59,7 +59,8 @@ svg.append("svg:defs").selectAll("marker")
     .attr("markerHeight", 4)
     .attr("orient", "auto")
   .append("svg:path")
-    .attr("d", "M0,-5L10,0L0,5");
+    .attr("d", "M0,-5L10,0L0,5")
+    .style("fill", "white");
 
 // add the links and the arrows
 var path = svg.append("svg:g").selectAll("path")
@@ -133,8 +134,8 @@ function dblclick() {
     /*node.append("text")
     .attr("x", 12)
     .attr("dy", ".35em")
-    .text(function(d) { return d.name; });
-    connectedNodes();*/
+    .text(function(d) { return d.name; });*/
+    connectedNodes();
     d3.select(this).select("circle").transition()
         .duration(750)
         .attr("r", 6)
@@ -151,14 +152,14 @@ var linkedByIndex = {};
 for (i = 0; i < nodes.length; i++) {
     linkedByIndex[i + "," + i] = 1;
 };
-node.links.forEach(function (d) {
-    linkedByIndex[d.source.index + "," + d.target.index] = 1;
+links.forEach(function (d) {
+    linkedByIndex[links.source + "," + links.target] = 1;
 });
 function neighboring(a, b) {
     return linkedByIndex[a.index + "," + b.index];
 }
 function connectedNodes() {
-    if (toggle == 0) {
+    //if (toggle == 0) {
         //Reduce the opacity of all but the neighbouring nodes
         d = d3.select(this).node().__data__;
         node.style("opacity", function (o) {
@@ -169,11 +170,11 @@ function connectedNodes() {
         });
         //Reduce the op
         toggle = 1;
-    } else {
+    //} else {
         //Put them back to opacity=1
-        node.style("opacity", 1);
-        link.style("opacity", 1);
-        toggle = 0;
-    }
+        //node.style("opacity", 1);
+        //link.style("opacity", 1);
+        //toggle = 0;
+    //}
 }
 });
