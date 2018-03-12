@@ -4,15 +4,22 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var index = require('./routes/index');
+var db = require('./config');
+//var require = require('requirejs');
+
+// Retrieve
 var users = require('./routes/users');
+
+/*var users = require('./routes/users');
 var report = require('./routes/report');
 var summary = require('./routes/summary');
 var tree = require('./routes/tree');
+
+var force = require('./routes/force');*/
 var bubble = require('./routes/bubble');
-var force = require('./routes/force');
 var app = express();
+// Connect to the db
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,11 +33,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
+app.get('/drinks', function(req, res) {
+  db.findall(function(err, drinks){
+      res.send(drinks)
+  });
+});
+//app.get('/getdata', db);
 app.use('/users', users);
+/*
 app.use('/report', report);
 app.use('/summary', summary);
 app.use('/tree', tree);
-app.use('/force', force);
+app.use('/force', force);*/
 app.use('/bubble', bubble);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

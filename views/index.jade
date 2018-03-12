@@ -1,29 +1,34 @@
 extends layout
 
 block content
-   //h1 Pyfia Oracle Data Visualization
-   //p.
-    Pythia is an interactive sonic sculpture, analyzing the audience’s speech and interpreting it into 
-    absurd or perhaps prophetic messages, the so-called divine glitch. <a href='http://www.sonicartist.me/wp/pythia/'> Read more...</a>
-   //P.
-    The Visualization below represent the data collected in an eleven month period in the year 2015.
-    this Visualization is interactive and the user can select in between time periods to analyse the 
-    frequency in the words or phrase for such periods. Also, a single word or phrase can be looked up
-    via the search boxes to visualise its existence or frequency in the oracle. Detailed report on the
-    analysis of the data can be found in the report tab located in the navigation bar or click <a href='/report.jade'> here</a>
-
-   //ul.nav.nav-pills.nav-justified
-    li.active
-      a(a data-toggle="pill" href="#home") Force-Directed Graph
-    li
-      a(a data-toggle="pill" href="#hierarchy") Bubble Chart
-    li
-      a(a data-toggle="pill" href="#size") Tree Chart
-   //.tab-content
-    #home.tab-pane.fade.in.active
-      iframe(src='/force' style="width:100%; height:100%; position:absolute; border:none; overflow:hidden")
-    #hierarchy.tab-pane.fade
-      iframe(src='/bubble' style="width:1200px; height:1000px; border:none; overflow:auto")
-    #size.tab-pane.fade
-      iframe(src='/tree' style="width:1200px; height:1000px; border:none; overflow:auto")
-     
+  .col-lg-2.col-md-2.col-sm-3
+    .sideview
+      input#filterInp(type="text" placeholder="search")
+      #words
+  .col-lg-10.col-md-10.col-sm-9
+    #network
+    //button.btn.btn-info.btn-lg(type="button" data-toggle="modal" data-target="#myModal") Open Modal
+    #myModal.modal.fade(role="dialog")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type="button" data-dismiss="modal") &times;
+            h4#title.modal-title
+          .modal-body
+            ul#minornode
+    a#ui-to-top.ui-to-top(href="/web/viewer.html?file=Presentation.pdf" data-tooltip="tooltip" title="Presentation") P
+    a#ui-to-top1.ui-to-top(href="/web/viewer.html?file=Proposal2.pdf" data-tooltip="tooltip" title="Report") R
+    a#ui-to-top2.ui-to-top(data-toggle="modal" data-tooltip="tooltip" title="Manuscript" data-target="#manuscript") M
+    a#ui-to-top3.ui-to-top(data-tooltip="tooltip" title="Table View. click to toggle" onClick="tableView()") T        
+    ul#ui-to-buttom
+    
+    #manuscript.modal.fade(role="dialog")
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            button.close(type="button" data-dismiss="modal") &times;
+            h4#sumtitle.modal-title Manuscript
+          #sumtext.modal-body
+          .modal-footer
+            button.btn.btn-default(type="button" data-dismiss="modal") Close                  
+  script(src='/javascripts/semanticForce.js')

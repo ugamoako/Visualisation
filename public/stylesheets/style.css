@@ -1,17 +1,167 @@
 body {
-  padding: 50px;
   font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
-  overflow: auto;
-  background-color: black;
+  /*background-color: black;*/
   
 }
-li a {color: black;}
+
+.header{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  font-size: xx-large;
+  color: #ccc;
+  text-align: center;
+  background-color: #DF1843;
+}
+td, th { 
+  padding: 4px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+
+th.des:after {
+  font-size: 10px;
+    content: "\25b2";
+  }
+  
+  th.aes:after {
+    font-size: 10px;
+    content: "\25bc";
+  }
+.sideview{
+  position: fixed;
+  top: 35px;
+  left: 0;
+  z-index: 2;
+  background-color: #ccc;
+  text-decoration: none;
+  overflow: auto;
+  height: 100% !important;
+}
+
+.collection{
+  color: blue;
+  cursor: pointer;
+}
+li:hover{
+  background-color: bisque;
+}
+#network{
+ z-index: 1
+}
+line {
+  stroke: #ccc;
+}
+text{
+  color: #ffc045;
+}
+circle{
+  fill: #ccc;
+}
+#words{
+  margin: 10px;
+}
+/*li a {color: black;}
 a {
   color: black;;
-}
+}*/
 li{
-  font-size: 14px;
+  font-size: 12px;
+  list-style: none;
+  padding-bottom: 6px;
+  padding-left: 20px;
+  cursor: pointer;
 }
+ul{
+  -webkit-padding-start: 0;
+}
+input{
+  border-radius: 10px;
+  margin: 10px;
+  padding: 3px;
+}
+.ui-to-top {
+  position: fixed;
+  right: 15px;
+  width: 55px;
+  height: 55px;
+  border-radius: 100%;
+  font-size: 24px;
+  line-height: 58px;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  z-index: 20;
+  transition: .3s all ease;
+  -webkit-transform: translateY(100px);
+  -ms-transform: translateY(100px);
+  transform: translateY(100px);
+  color: #fff;
+  text-decoration: none;
+}
+#ui-to-top{
+  top: 5px;
+  background: #ffc045;
+}
+#ui-to-top1{
+  top: 75px;
+  background-color: #ccc;
+}
+#ui-to-top2{
+  top: 145px;
+  background-color: #DF1843;
+}
+#ui-to-top3{
+  top: 215px;
+  background-color: #2C040D;
+}
+#ui-to-top:hover, 
+#ui-to-top1:hover, 
+#ui-to-top2:hover,
+#ui-to-top3:hover{
+  color: #fff;
+  background: #000;
+  text-decoration: none;
+}
+tr:hover td { background-color: #fff; }
+#ui-to-buttom{
+  position: fixed;
+  padding-top: 5px;
+  bottom: 16%;
+  right: 15px;
+  width: 350px;
+  height: 200px;
+  border-radius: 5px;
+  font-size: 12px;
+  overflow: auto;
+  text-align: left;
+  text-decoration: none;
+  z-index: 19;
+  transition: .3s all ease;
+  -webkit-transform: translateY(100px);
+  -ms-transform: translateY(100px);
+  transform: translateY(100px);
+  color: #2C040D;
+  background-color: #ccc;
+  text-decoration: none;
+  opacity: 0.7;
+}
+.conv_count {
+  background-color: #DF1843;
+  height: 15px;
+  display: inline-block;
+  color: wheat;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+/*
 .container{
   position: relative;
   display: block;
@@ -66,4 +216,4 @@ p{
 }
 .input-group-addon{
   width:0;
-}
+}*/

@@ -1,0 +1,22 @@
+0. Deploy online (on github.pages for example) done!!!!!
+1. Node degree = node size
+2. Edge weight = edge thickness or color intesity
+3. details on double click, not single click then send me the link! done!!!!!
+4. try to find some modified force-directed layout to lower down the amount of edge intersections
+5. "Phrase list":
+    - highlight phrase chain in graph when hover exact phrase in list
+    - when highlighted - show direction of connections
+6. "word list":
+    - Add sort buttons: alphabetic sort, frequency. done!!!
+    - When hover word - highlight node in graph like when search box used
+    - Add full names (or tooltips) for P,R,T. done !!!
+7. Add "Full phrase list" button. done!!!
+8. Make "Phrase list" not as popup windows, but as additional panel, for example on the right of the screen. done!!!
+
+database credentials:
+
+username: ugnicholas
+password: wrR-7wa-DsZ-rMW
+database name: visualisation
+dbuser:nicholas
+dbpass:123456
