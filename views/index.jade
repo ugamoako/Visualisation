@@ -3,6 +3,8 @@ extends layout
 block content
   .col-lg-2.col-md-2.col-sm-3
     .sideview
+      a.ui-to-top#btnBack(onClick="gotoHome()")
+        i.fa.fa-home
       input#filterInp(type="text" placeholder="search")
       #words
   .col-lg-10.col-md-10.col-sm-9

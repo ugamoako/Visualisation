@@ -79,7 +79,7 @@ ul{
 }
 input{
   border-radius: 10px;
-  margin: 10px;
+  margin: 10px 10px 10px 48px;
   padding: 3px;
 }
 .ui-to-top {
@@ -125,7 +125,12 @@ input{
   background: #000;
   text-decoration: none;
 }
-tr:hover td { background-color: #fff; }
+.conv_count:hover{
+  color: #fff;
+  background-color: #ffc045; 
+  transition: .3s all ease;
+}
+.movie:hover { background-color: #fff; }
 #ui-to-buttom{
   position: fixed;
   padding-top: 5px;
@@ -147,6 +152,23 @@ tr:hover td { background-color: #fff; }
   background-color: #ccc;
   text-decoration: none;
   opacity: 0.7;
+}
+#btnBack{
+  right: 0 !important;
+  left: 10px;
+  top: -59px;
+  width: 36px !important;
+  height: 36px !important;
+  font-size: 20px;
+  line-height: 35px;
+  background: #ccc;
+  color: #2C040D;
+}
+#btnBack:hover{
+  color: #DF1843;
+}
+.movie{
+  cursor: pointer;
 }
 .conv_count {
   background-color: #DF1843;

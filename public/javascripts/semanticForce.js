@@ -4,17 +4,29 @@ var rawdata = [];
 let sidelab = [];
 let optArray = [];     
 var toggle = 0;
-var url = "http://localhost:3000/users/m0";
-d3.json(url, function (json) {
-    json.forEach((e)=>{
-        //rawdata.push(e.text);
-        if(e.text !== null)
-            rawdata.push(e.text);
-            //console.log('new json rec',e.text.split(' '));
+let sideHome = [];
+let prevData = [];
+var sideToggle = false;
+var uri = "http://localhost:3000/users/m0";
+function fetchData(url){
+    prevData = rawdata;
+    rawdata = [];
+    sidelab = [];
+    optArray = [];
+    d3.json(url, function (json) {
+        json.forEach((e)=>{
+            //rawdata.push(e.text);
+            if(e.text !== null)
+                rawdata.push(e.text);
+                //console.log('new json rec',e.text.split(' '));
+        });
+
+        createJson(rawdata);
     });
-    createJson(rawdata);
-});
+}
+fetchData(uri);
 d3.csv("Dataset/groupmsg.csv", function(d) {
+    sideHome = d;
     populateTranscriptView(d);
 });
 
@@ -48,8 +60,10 @@ function createJson(data){
                 drawgraph(nodes, newLinks);
                
                 
-                console.log('links>>>', newLinks);
-                //populateTranscriptView(sidelab);
+                //console.log('links>>>', newLinks);
+                if(sideToggle)
+                    populateTranscriptView(sidelab);
+                //console.log('sidelab 1 >>', sidelab);
             });  
 }
 function drawgraph(nodes, links){
@@ -83,8 +97,9 @@ function drawgraph(nodes, links){
     var circle = node.append('circle')
         .attr('class', 'node')
         .attr('r', function(d) {
-            const r = width * 0.001 * d.weight;
+            let r = width * 0.001 * d.weight;
             const i = width * 0.004;
+            if(r > 10){r = 10};
             return r > i ? r: i;
         });  
         
@@ -136,6 +151,7 @@ function tableView(){
    
 }
     function populateTranscriptView(data){
+        //console.log('populate data>> ', data);
         var sortAscending = true;
         var table = d3.select('#words').append('table');
         var titles = d3.keys(data[0]);
@@ -152,8 +168,7 @@ function tableView(){
                              //sconsole.log('clicked value: ', x);
                              if (sortAscending) {
                                rows.sort(function(a, b) { 
-                                if (a[x] < b[x]) { 
-                                    return -1; 
+                                if (a[x] < b[x]) { return -1; 
                                   } else if (a[x] > b[x]) { 
                                     return 1; 
                                   } else {
@@ -184,28 +199,35 @@ function tableView(){
                      .append('tr');
         rows.selectAll('td')
           .data(function (d) {
+              //console.log('d >>', d)
               return titles.map(function (k) {
-                  return { 'conv_count': d[k], 'movie': k};
+                //console.log('k >>', k)
+                  return { 'name': k, 'count': d[k]};
               });
           }).enter()
           .append('td')
           .attr('data-th', function (d) {
-              return d.movie;
+              return d.name;
           })
-          
+          .on('click', function (d) {
+            if(sideToggle){
+                modifyText(d.count);
+            } else{
+                clickedMovie(d.count);
+            }
+            
+            //console.log('you clicked me...', d.value);
+            //let e = d3.select(this).node().__data__;
+            
+         })
           .append('div').attr('class', function(d, i){
             return i==0 ? 'movie': 'conv_count';
           })
           .text(function (d) {
-            return d.conv_count;
-        })
+            return d.count;
+         })
           .style('width', function(d, i){
-            return i==0 ? '': Math.round(d.conv_count * 0.1) +'px';
-          })
-          .on('click', function (d) {
-              //modifyText(d.conv_count);
-              //console.log('you clicked me...', d.value);
-              clickedMovie(d.movie);
+            return i==0 ? '': Math.round(d.count * 0.1) +'px';
           })
           .on('mousemove', function(d){
               //searchNode(d.value);
@@ -238,11 +260,35 @@ function tableView(){
               .text(function(d) { return d.conv_count; });*/
 
            
-    }        
+    } 
+           
     function clickedMovie(d){
-        console.log('hello good');
+        d3.select('table').remove();
+        sideToggle = true;
+        d3.select('svg').remove();
+        let url = 'http://localhost:3000/users/'+d;
+        fetchData(url);
+        resolve();
+        //console.log('sidelab >>', sidelab);
+        //populateTranscriptView(sidelab);
+        //let d = d3.select(this).node().__data__;
+        //console.log(url);   
     }
-
+    function gotoHome(){
+        d3.select('table').remove();
+        if(sideToggle){
+            sideToggle = false;
+            d3.select('svg').remove(); 
+            //d3.select('table').remove();
+            createJson(prevData);
+            populateTranscriptView(sideHome);
+        }else{
+            
+            populateTranscriptView(sideHome);
+            console.log('select and remove table');
+        }
+          
+    }
         function modifyText(d){
             if(d.length < 4){ d+= ' '}
             //let textid = d.split(" ");
@@ -400,6 +446,9 @@ function tableView(){
         });
             
             //console.log('rawdata: ', rawdata);
-       
+            $('.movie').click(function() {
+                let me = $('.movie').innerHTML;
+                console.log('clicked >>', me);
+             });
 
     
